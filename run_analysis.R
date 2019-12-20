@@ -1,25 +1,25 @@
 ## Setting up the environment
-library(data.table)
-library(dplyr)
-library(reshape2)
-setwd("~/Documents/RStudio/UCI HAR Dataset")
+   library(data.table)
+   library(dplyr)
+   library(reshape2)
+   setwd("~/Documents/RStudio/UCI HAR Dataset")
 
 
 ## Reading feature and activity_labels data sets
-feature <- read.table("./features.txt")
-activity_labels <- read.table("./activity_labels.txt", col.names = c("code","activity"))
+   feature <- read.table("./features.txt")
+   activity_labels <- read.table("./activity_labels.txt", col.names = c("code","activity"))
 
 
 ## Reading the training data set
-subject_train <- read.table("./train/subject_train.txt", col.names = "subject")
-y_train <- read.table("./train/y_train.txt", col.names = "code")
-x_train <- read.table("./train/X_train.txt", col.names = feature[,2])
+   subject_train <- read.table("./train/subject_train.txt", col.names = "subject")
+   y_train <- read.table("./train/y_train.txt", col.names = "code")
+   x_train <- read.table("./train/X_train.txt", col.names = feature[,2])
 
 
 ## Reading the testing data set
-subject_test <- read.table("./test/subject_test.txt", col.names = "subject")
-y_test <- read.table("./test/y_test.txt", col.names = "code")
-x_test <- read.table("./test/X_test.txt", col.names = feature[,2])
+   subject_test <- read.table("./test/subject_test.txt", col.names = "subject")
+   y_test <- read.table("./test/y_test.txt", col.names = "code")
+   x_test <- read.table("./test/X_test.txt", col.names = feature[,2])
 
 
 #########################################################################################################
@@ -27,10 +27,10 @@ x_test <- read.table("./test/X_test.txt", col.names = feature[,2])
 #########################################################################################################
 
 ## Merge the training and the test sets to create one data set
-subject <- rbind(subject_test, subject_train)
-y <- rbind(y_test, y_train)
-x <- rbind(x_test, x_train)
-complete_data <- cbind(subject, y , x)
+   subject <- rbind(subject_test, subject_train)
+   y <- rbind(y_test, y_train)
+   x <- rbind(x_test, x_train)
+   complete_data <- cbind(subject, y , x)
 
 
 #########################################################################################################
@@ -38,7 +38,7 @@ complete_data <- cbind(subject, y , x)
 #########################################################################################################
 
 ## Create a subset of the complete data set with only mean and the standard deviation measurements for each subject/activity
-subset <- select(complete_data, subject, code, matches("mean|std"))
+   subset <- select(complete_data, subject, code, matches("mean|std"))
 
 
 #########################################################################################################
@@ -46,10 +46,10 @@ subset <- select(complete_data, subject, code, matches("mean|std"))
 #########################################################################################################
 
 ## Changing activity code in the subset data with the descriptive activity name
-subset[,2] <- factor(subset[,2], levels = activity_labels[,1], label = activity_labels[,2])
+   subset[,2] <- factor(subset[,2], levels = activity_labels[,1], label = activity_labels[,2])
 
-## Renaming column2 from "code" to "activity"
-colnames(subset)[2] <- "activity"
+## Renaming column 2 from "code" to "activity"
+   colnames(subset)[2] <- "activity"
 
 
 #########################################################################################################
@@ -58,11 +58,11 @@ colnames(subset)[2] <- "activity"
 
 ## Cleaning up the column names from the feature data set
 
-subset[,2] <- tolower(subset[,2]) #lowercase activity names
-names(subset) <-  gsub("t(?=[A-Z])", "Time", names(subset), perl=TRUE) # replacing "t" with "time"
-names(subset) <-  gsub("f(?=[A-Z])", "Freq", names(subset), perl=TRUE) # replacing "f" with "freq"
-names(subset) <-  gsub("-", ".", names(subset)) #replacing "-" with "."
-names(subset) <-  gsub("\\()", "", names(subset)) #get rid of "()"
+   subset[,2] <- tolower(subset[,2])  #lowercase activity names
+   names(subset) <-  gsub("t(?=[A-Z])", "Time", names(subset), perl=TRUE)  # replacing "t" with "time"
+   names(subset) <-  gsub("f(?=[A-Z])", "Freq", names(subset), perl=TRUE)  # replacing "f" with "freq"
+   names(subset) <-  gsub("-", ".", names(subset))  #replacing "-" with "."
+   names(subset) <-  gsub("\\()", "", names(subset))  #getting rid of "()"
 
 
 ###########################################################################################################################
@@ -71,8 +71,8 @@ names(subset) <-  gsub("\\()", "", names(subset)) #get rid of "()"
 
 ## Pass the subset data through the melt function and set the id variables to "subject" and "activity."  
 ## This will allow us to organize the data in the next step by "subject" and "activity"
-sub_melt <- melt(subset, id.vars = c("subject", "activity"))
+   sub_melt <- melt(subset, id.vars = c("subject", "activity"))
 
-## Now that the data is melted it can be reshaped in various ways. 
+## Now that the data is melted it can be reshaped in various ways
 ## Use the dcast function to shape the data by subject(primary) and activity(secondary) in rows and the mean of each of their measure variables 
-tinydata <- dcast(sub_melt, subject + activity ~..., mean) 
+   tinydata <- dcast(sub_melt, subject + activity ~..., mean) 
