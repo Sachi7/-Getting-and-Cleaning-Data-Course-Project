@@ -36,5 +36,5 @@ The R script is titled [run_analysis.R](https://github.com/Sachi7/-Getting-and-C
 
    8. The data set is melted with the melt function.  Then, the dcast function is used to shape the data by subject(primary) and activity(secondary) in rows and the mean of each of their measure variables.  
    
-### The goal of this script to create a tiny data set as specified in task 5.  An excerpt of the tiny data set can be found [here](https://github.com/Sachi7/-Getting-and-Cleaning-Data-Course-Project/blob/master/tinydata-excerpt).
+### The goal of this script to create a tiny data set as specified in task 5.  The tiny data set can be found [here](https://github.com/Sachi7/-Getting-and-Cleaning-Data-Course-Project/blob/master/tinydata.csv).
 
