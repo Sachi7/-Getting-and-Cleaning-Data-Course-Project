@@ -1,7 +1,7 @@
 # Code Book
 
 ## The Variables
-The variables were summarized using the dataMaid package in R.  The dataMaid's makeCodebook function was used to create a pdf codebook file for the tiny data set, downloaded to the [repository](https://github.com/Sachi7/-Getting-and-Cleaning-Data-Course-Project/blob/master/cb_td.pdf).
+The variables were summarized using the dataMaid package in R.  The dataMaid's makeCodebook function was used to create a pdf codebook file for the tiny data set.  The file was downloaded to the [repository](https://github.com/Sachi7/-Getting-and-Cleaning-Data-Course-Project/blob/master/cb_td.pdf).
 
 ## The Data Source
 The data used represents data collected from the accelerometers from the Samsung Galaxy S smartphone.  
