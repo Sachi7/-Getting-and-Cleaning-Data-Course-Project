@@ -16,20 +16,20 @@
 
 
 ## Reading feature and activity_labels data sets
-   feature <- read.table("./features.txt")
-   activity_labels <- read.table("./activity_labels.txt", col.names = c("code","activity"))
+   feature <- read.table("./UCI HAR Dataset/features.txt")
+   activity_labels <- read.table("./UCI HAR Dataset/activity_labels.txt", col.names = c("code","activity"))
 
 
 ## Reading the training data set
-   subject_train <- read.table("./train/subject_train.txt", col.names = "subject")
-   y_train <- read.table("./train/y_train.txt", col.names = "code")
-   x_train <- read.table("./train/X_train.txt", col.names = feature[,2])
+   subject_train <- read.table("./UCI HAR Dataset/train/subject_train.txt", col.names = "subject")
+   y_train <- read.table("./UCI HAR Dataset/train/y_train.txt", col.names = "code")
+   x_train <- read.table("./UCI HAR Dataset/train/X_train.txt", col.names = feature[,2])
 
 
 ## Reading the testing data set
-   subject_test <- read.table("./test/subject_test.txt", col.names = "subject")
-   y_test <- read.table("./test/y_test.txt", col.names = "code")
-   x_test <- read.table("./test/X_test.txt", col.names = feature[,2])
+   subject_test <- read.table("./UCI HAR Dataset/test/subject_test.txt", col.names = "subject")
+   y_test <- read.table("./UCI HAR Dataset/test/y_test.txt", col.names = "code")
+   x_test <- read.table("./UCI HAR Dataset/test/X_test.txt", col.names = feature[,2])
 
 
 #########################################################################################################
