@@ -87,5 +87,5 @@
 ## Use the dcast function to shape the data by subject(primary) and activity(secondary) in rows and the mean of each of their measure variables 
    tinydata <- dcast(sub_melt, subject + activity ~..., mean) 
 
-## Write the tiny data set to a cvs file
-   write.csv(tinydata, "tinydata.csv")
+## Write the tiny data set to a txt file
+   write.table(tinydata, "tinydata.txt")
